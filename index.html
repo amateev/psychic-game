@@ -7,10 +7,10 @@
 
 <div id=body><h1>The Psychic Game</h1>
 <p>Guess what letter I am thinking of</p>
-<p>Wins<span id="wins"></span></p>
-<p>Losses<span id="losses"></span></p>
-<p>Guesses Left:<span id="remaining"></span></p>
-<p>Your Guesses so far:<span id="guesses"></span></p>
+<p>Wins: <span id="wins"></span></p>
+<p>Losses: <span id="losses"></span></p>
+<p>Guesses Left: <span id="remaining"></span></p>
+<p>Your Guesses so far: <span id="guesses"></span></p>
 
 </div>
 
@@ -19,20 +19,32 @@
 <script type="text/javascript">
 
 	var computer = ["a","b","c","d","e"];
+	var wins = 0;
+	var losses = 0;
+	var guessesLeft = 9;
 	
 
 	function game(event) {
+
 //guest guess		
 		var k = event.key.toLowerCase();
-		console.log(k);
+		document.querySelector('#guesses').innerText = k;
+		//console.log(k);
+
 //computer random guess		
 		var compChoice = computer[Math.floor(Math.random()*computer.length)];
-		console.log(compChoice); 
+		console.log(compChoice);
+
+//compare computer choice to guest's
+		if(k == compChoice) {
+			wins++;
+			document.querySelector('#wins').innerText = wins;
+		}else {
+			losses++;
+			document.querySelector('#losses').innerText = losses;
+		}
 		
 
-		// if (k == computer[i]) 
-		// 	document.querrySlector("#guess").innerHTML = "hello";
-		// }
 	}
 	
 	document.onkeyup = game;
